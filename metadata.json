@@ -1,0 +1,6 @@
+{
+  "name": "Ultrafast Pulse Calculator",
+  "description": "Calculate and explain the relationships between average power, repetition rate, pulse energy, pulse duration, and peak power. Includes an educational AI chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
