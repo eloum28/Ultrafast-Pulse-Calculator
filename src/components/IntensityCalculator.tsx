@@ -38,26 +38,26 @@ export function IntensityCalculator({ result }: IntensityCalculatorProps) {
   }
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden mt-6">
+    <div className="bg-white border border-slate-200 shadow-sm rounded-xl overflow-hidden mt-6">
       <button 
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between p-6 focus:outline-none bg-slate-900/50 hover:bg-slate-800/50 transition-colors"
+        className="w-full flex items-center justify-between p-6 focus:outline-none bg-slate-50 hover:bg-slate-100 transition-colors"
       >
-        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300">Peak Intensity Calculator</h3>
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-700">Peak Intensity Calculator</h3>
         {expanded ? <ChevronUp className="text-slate-500 w-4 h-4" /> : <ChevronDown className="text-slate-500 w-4 h-4" />}
       </button>
       
       {expanded && (
-        <div className="p-6 border-t border-slate-800 space-y-6">
+        <div className="p-6 border-t border-slate-200 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="space-y-1">
-                <label className="block text-xs text-slate-400">
+                <label className="block text-xs text-slate-500">
                   Beam Definition
                 </label>
-                <div className="flex">
+                <div className="flex shadow-sm rounded-lg">
                   <select
-                    className="w-1/2 bg-slate-950 border border-slate-700 border-r-0 rounded-l-lg px-3 py-2 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none"
+                    className="w-1/2 bg-white border border-slate-300 border-r-0 rounded-l-lg px-3 py-2 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none"
                     value={beamProfile}
                     onChange={(e) => setBeamProfile(e.target.value as any)}
                   >
@@ -65,7 +65,7 @@ export function IntensityCalculator({ result }: IntensityCalculatorProps) {
                     <option value="uniform">Uniform (Top-hat)</option>
                   </select>
                   <select
-                    className="w-1/2 bg-slate-800 border border-slate-700 rounded-r-lg px-3 py-2 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none"
+                    className="w-1/2 bg-slate-100 border border-slate-300 rounded-r-lg px-3 py-2 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none"
                     value={beamType}
                     onChange={(e) => setBeamType(e.target.value as any)}
                   >
@@ -76,20 +76,20 @@ export function IntensityCalculator({ result }: IntensityCalculatorProps) {
               </div>
 
               <div className="space-y-1">
-                <label className="block text-xs text-slate-400">
+                <label className="block text-xs text-slate-500">
                   Beam Size
                 </label>
-                <div className="flex">
+                <div className="flex shadow-sm rounded-lg">
                   <input
                     type="number"
-                    className="w-full bg-slate-950 border border-slate-700 border-r-0 rounded-l-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-cyan-500 outline-none"
+                    className="w-full bg-white border border-slate-300 border-r-0 rounded-l-lg px-3 py-2 text-sm text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none"
                     value={beamSize}
                     onChange={(e) => setBeamSize(e.target.value)}
                     min="0"
                     step="any"
                   />
                   <select
-                    className="bg-slate-800 border border-slate-700 rounded-r-lg px-2 py-1 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none"
+                    className="bg-slate-100 border border-slate-300 rounded-r-lg px-2 py-1 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none"
                     value={beamUnit}
                     onChange={(e) => setBeamUnit(e.target.value)}
                   >
@@ -103,12 +103,12 @@ export function IntensityCalculator({ result }: IntensityCalculatorProps) {
               </div>
             </div>
             
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 flex flex-col justify-center">
-              <span className="text-[10px] uppercase tracking-widest text-cyan-500 font-bold">Peak Intensity</span>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 flex flex-col justify-center">
+              <span className="text-[10px] uppercase tracking-widest text-blue-600 font-bold">Peak Intensity</span>
               {intensityWm2 > 0 ? (
                 <div className="mt-2">
-                  <div className="text-3xl font-light text-white">
-                    {intensityWcm2.toExponential(3)} <span className="text-lg text-cyan-400">W/cm²</span>
+                  <div className="text-3xl font-light text-slate-900">
+                    {intensityWcm2.toExponential(3)} <span className="text-lg text-blue-500">W/cm²</span>
                   </div>
                   <div className="text-xs text-slate-500 font-mono mt-1">
                     {intensityWm2.toExponential(3)} W/m²
@@ -120,7 +120,7 @@ export function IntensityCalculator({ result }: IntensityCalculatorProps) {
             </div>
           </div>
           
-          <div className="p-3 rounded bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-200 leading-relaxed">
+          <div className="p-3 rounded-lg bg-orange-50 border border-orange-200 shadow-sm text-[11px] text-orange-800 leading-relaxed">
             <span className="font-bold block mb-1">Warning</span>
             Focused intensity depends strongly on beam profile (M² factor), aberrations, and the exact definition of spot size. 
             The values calculated here are theoretical ideals. Actual focal intensities may be significantly lower due to real-world optical imperfections.

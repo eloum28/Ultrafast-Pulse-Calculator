@@ -164,21 +164,21 @@ export function ChatbotPanel({ context }: ChatbotPanelProps) {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-slate-900/30 border-l border-slate-800">
-      <div className="p-4 border-b border-slate-800 bg-slate-900/50 flex flex-col space-y-2">
+    <div className="flex flex-col h-full bg-white border-l border-slate-200">
+      <div className="p-4 border-b border-slate-200 bg-slate-50 flex flex-col space-y-2">
         <div className="flex items-center space-x-2">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white flex-1">Pulse Physics Assistant</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-slate-700 flex-1">Pulse Physics Assistant</h2>
         </div>
         <div className="flex items-center space-x-1.5">
-          {status === 'Connected' && <Wifi className="w-3 h-3 text-green-500" />}
-          {status === 'Connecting' && <Loader2 className="w-3 h-3 text-cyan-500 animate-spin" />}
-          {status === 'Offline explanation mode' && <WifiOff className="w-3 h-3 text-amber-500" />}
+          {status === 'Connected' && <Wifi className="w-3 h-3 text-green-600" />}
+          {status === 'Connecting' && <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />}
+          {status === 'Offline explanation mode' && <WifiOff className="w-3 h-3 text-orange-500" />}
           {status === 'Configuration error' && <AlertTriangle className="w-3 h-3 text-red-500" />}
           <span className={`text-[9px] uppercase tracking-wider ${
-            status === 'Connected' ? 'text-green-500' :
-            status === 'Connecting' ? 'text-cyan-500' :
-            status === 'Offline explanation mode' ? 'text-amber-500' :
-            'text-red-500'
+            status === 'Connected' ? 'text-green-600' :
+            status === 'Connecting' ? 'text-blue-600' :
+            status === 'Offline explanation mode' ? 'text-orange-600' :
+            'text-red-600'
           }`}>
             {status}
           </span>
@@ -190,13 +190,13 @@ export function ChatbotPanel({ context }: ChatbotPanelProps) {
           <div key={idx} className={`flex flex-col ${msg.role === 'user' ? 'items-end space-y-1' : 'space-y-1'}`}>
             <div className={`p-3 text-xs leading-relaxed ${
               msg.role === 'user' 
-                ? 'bg-cyan-600/20 border border-cyan-500/30 rounded-lg rounded-tr-none text-cyan-50 text-right' 
-                : 'bg-slate-800 rounded-lg rounded-tl-none text-slate-200'
+                ? 'bg-blue-50 border border-blue-200 rounded-lg rounded-tr-none text-blue-900 text-right' 
+                : 'bg-slate-100 border border-slate-200 rounded-lg rounded-tl-none text-slate-800'
             }`}>
               {msg.role === 'user' ? (
                 msg.content
               ) : (
-                <div className="prose prose-sm prose-invert max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-4 prose-math:text-cyan-400">
+                <div className="prose prose-sm max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-4 prose-math:text-blue-600">
                   <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                     {msg.content}
                   </ReactMarkdown>
@@ -208,21 +208,21 @@ export function ChatbotPanel({ context }: ChatbotPanelProps) {
         ))}
         {isLoading && (
           <div className="flex flex-col space-y-1">
-             <div className="bg-slate-800 p-3 rounded-lg rounded-tl-none text-xs text-slate-400 flex items-center">
-               <Loader2 className="w-3 h-3 animate-spin mr-2 text-cyan-500" /> Thinking...
+             <div className="bg-slate-100 border border-slate-200 p-3 rounded-lg rounded-tl-none text-xs text-slate-500 flex items-center">
+               <Loader2 className="w-3 h-3 animate-spin mr-2 text-blue-600" /> Thinking...
              </div>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-4 border-t border-slate-200">
         <div className="flex flex-wrap gap-2 mb-3">
           {presetQuestions.map((q, i) => (
             <button
               key={i}
               onClick={() => setInput(q)}
-              className="text-[10px] py-1 px-2 rounded-full border border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200 hover:border-slate-500 transition-colors whitespace-nowrap"
+              className="text-[10px] py-1 px-2 rounded-full border border-slate-200 bg-white text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-colors whitespace-nowrap shadow-sm"
             >
               {q}
             </button>
@@ -234,13 +234,13 @@ export function ChatbotPanel({ context }: ChatbotPanelProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about pulse physics..."
-            className="w-full bg-slate-950 border border-slate-700 rounded-full px-4 py-2 text-xs focus:ring-1 focus:ring-cyan-500 outline-none text-white"
+            className="w-full bg-slate-50 border border-slate-200 shadow-inner rounded-full px-4 py-2 text-xs focus:ring-1 focus:ring-blue-500 outline-none text-slate-900"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="absolute right-2 top-1.5 text-cyan-500 disabled:opacity-50 transition-opacity"
+            className="absolute right-3 top-2 text-blue-600 disabled:opacity-50 transition-opacity hover:text-blue-700"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
           </button>

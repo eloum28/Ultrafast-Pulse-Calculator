@@ -31,15 +31,15 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
     return (
       <div className={`space-y-1 ${isDisabled ? 'opacity-70' : ''}`} title={tooltip}>
         <div className="flex justify-between items-center">
-          <label className={`block text-xs ${isDisabled ? 'text-cyan-500 font-bold' : 'text-slate-400'}`}>
+          <label className={`block text-xs ${isDisabled ? 'text-blue-600 font-bold' : 'text-slate-500'}`}>
             {isDisabled ? 'Calculated ' : ''}{label}
           </label>
         </div>
         <div className="flex flex-col space-y-1">
-          <div className="flex">
+          <div className="flex shadow-sm rounded-lg">
             <input
               type="number"
-              className={`w-full ${isDisabled ? 'bg-slate-950 border-cyan-900/50 text-cyan-400' : 'bg-slate-900 border-slate-700 text-white'} border border-r-0 rounded-l-lg px-3 py-2 text-sm focus:ring-1 focus:ring-cyan-500 outline-none`}
+              className={`w-full ${isDisabled ? 'bg-blue-50 border-blue-200 text-blue-700' : 'bg-white border-slate-300 text-slate-900'} border border-r-0 rounded-l-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none`}
               value={isDisabled && (!data.value || parseFloat(data.value) === 0) ? '' : data.value}
               onChange={(e) => updateInput(field, 'value', e.target.value)}
               placeholder={isDisabled ? "Auto-calculated" : "0.0"}
@@ -47,7 +47,7 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
               disabled={isDisabled}
             />
             <select
-              className={`${isDisabled ? 'bg-slate-900 border-cyan-900/50' : 'bg-slate-800 border-slate-700'} border rounded-r-lg px-2 py-1 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none`}
+              className={`${isDisabled ? 'bg-blue-50 border-blue-200' : 'bg-slate-100 border-slate-300'} border rounded-r-lg px-2 py-1 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none`}
               value={data.unit}
               onChange={(e) => updateInput(field, 'unit', e.target.value)}
               disabled={isDisabled}
@@ -64,7 +64,7 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
               <span className="text-[10px] text-slate-500">Uncertainty (±%)</span>
               <input 
                 type="number"
-                className="w-16 bg-slate-900 border border-slate-700 rounded px-2 py-1 text-[10px] text-amber-500 outline-none focus:border-amber-500"
+                className="w-16 bg-white border border-slate-300 shadow-sm rounded px-2 py-1 text-[10px] text-orange-600 outline-none focus:border-orange-500"
                 placeholder="0"
                 step="any"
                 min="0"
@@ -99,11 +99,11 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
   return (
     <div className="space-y-6">
       <div>
-        <label className="block text-xs font-semibold text-cyan-500 uppercase tracking-wider mb-2">
+        <label className="block text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
           Calculation Mode
         </label>
         <select
-          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-cyan-500 outline-none text-white"
+          className="w-full bg-white border border-slate-300 shadow-sm rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none text-slate-900"
           value={state.mode}
           onChange={(e) => setState({ ...state, mode: e.target.value as CalculationMode })}
         >
@@ -124,9 +124,9 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
             {renderInput('Pulse Duration (FWHM)', 'pulseDuration', TIME_UNITS, undefined, false, true)}
             
             <div className="space-y-1">
-              <label className="block text-xs text-slate-400">Pulse Shape</label>
+              <label className="block text-xs text-slate-500">Pulse Shape</label>
               <select
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-cyan-500 outline-none"
+                className="w-full bg-white border border-slate-300 shadow-sm rounded-lg px-3 py-2 text-sm text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none"
                 value={state.pulseShape}
                 onChange={(e) => setState({ ...state, pulseShape: e.target.value as PulseShape })}
               >
@@ -158,11 +158,11 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
               
             {(state.mode === 'peak-power' || state.mode === 'pulse-duration') && (
               <div className="space-y-1">
-                <label className="block text-xs text-slate-400">
+                <label className="block text-xs text-slate-500">
                   Pulse Shape
                 </label>
                 <select
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-cyan-500 outline-none"
+                  className="w-full bg-white border border-slate-300 shadow-sm rounded-lg px-3 py-2 text-sm text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none"
                   value={state.pulseShape}
                   onChange={(e) => setState({ ...state, pulseShape: e.target.value as PulseShape })}
                 >
@@ -177,14 +177,14 @@ export function CalculatorForm({ state, setState, onCalculate, error }: Calculat
       </div>
 
       {error && (
-        <div className="p-3 rounded bg-red-500/10 border border-red-500/20 text-[11px] text-red-200 leading-relaxed">
+        <div className="p-3 rounded-lg bg-red-50 border border-red-200 shadow-sm text-[11px] text-red-800 leading-relaxed">
           {error}
         </div>
       )}
 
       <button
         onClick={onCalculate}
-        className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold text-sm shadow-lg shadow-cyan-900/20 transition-all uppercase tracking-widest"
+        className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm shadow-md transition-all uppercase tracking-widest"
       >
         Calculate
       </button>

@@ -56,15 +56,15 @@ export function ComparisonPanel({ currentResult, currentState }: ComparisonPanel
     else ratioText = 'Equal';
 
     return (
-      <div className="flex justify-between items-center py-2 border-b border-slate-800 last:border-0">
-        <div className="w-1/3 text-xs font-medium text-slate-400">{label}</div>
-        <div className="w-1/4 text-xs text-white font-mono">
-          {engA.value.toPrecision(3)} <span className="text-[10px] text-slate-500">{engA.unit}</span>
+      <div className="flex justify-between items-center py-2 border-b border-slate-100 last:border-0">
+        <div className="w-1/3 text-xs font-medium text-slate-500">{label}</div>
+        <div className="w-1/4 text-xs text-slate-900 font-mono">
+          {engA.value.toPrecision(3)} <span className="text-[10px] text-slate-400">{engA.unit}</span>
         </div>
-        <div className="w-1/4 text-xs text-white font-mono">
-          {engB.value.toPrecision(3)} <span className="text-[10px] text-slate-500">{engB.unit}</span>
+        <div className="w-1/4 text-xs text-slate-900 font-mono">
+          {engB.value.toPrecision(3)} <span className="text-[10px] text-slate-400">{engB.unit}</span>
         </div>
-        <div className="w-1/4 text-[10px] text-right text-cyan-500 font-bold uppercase tracking-wider">
+        <div className="w-1/4 text-[10px] text-right text-blue-600 font-bold uppercase tracking-wider">
           {ratioText}
         </div>
       </div>
@@ -72,13 +72,13 @@ export function ComparisonPanel({ currentResult, currentState }: ComparisonPanel
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden mt-6">
+    <div className="bg-white border border-slate-200 shadow-sm rounded-xl overflow-hidden mt-6">
       <button 
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between p-6 focus:outline-none bg-slate-900/50 hover:bg-slate-800/50 transition-colors"
+        className="w-full flex items-center justify-between p-6 focus:outline-none bg-slate-50 hover:bg-slate-100 transition-colors"
       >
-        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300 flex items-center">
-          <svg className="w-4 h-4 mr-2 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-700 flex items-center">
+          <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
           </svg>
           Compare Configurations
@@ -87,17 +87,17 @@ export function ComparisonPanel({ currentResult, currentState }: ComparisonPanel
       </button>
       
       {expanded && (
-        <div className="p-6 border-t border-slate-800 space-y-6">
+        <div className="p-6 border-t border-slate-200 space-y-6">
           
           <div className="grid grid-cols-2 gap-6">
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
-              <h4 className="text-[10px] font-bold uppercase tracking-widest text-cyan-500 mb-4">Current Config (A)</h4>
-              <div className="space-y-2 text-xs text-slate-300 font-mono">
-                <div className="flex justify-between border-b border-slate-800 pb-1">
+            <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-4">
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-blue-600 mb-4">Current Config (A)</h4>
+              <div className="space-y-2 text-xs text-slate-700 font-mono">
+                <div className="flex justify-between border-b border-slate-100 pb-1">
                   <span className="text-slate-500">Power:</span> 
                   <span>{currentState.averagePower.value} {currentState.averagePower.unit}</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-800 pb-1">
+                <div className="flex justify-between border-b border-slate-100 pb-1">
                   <span className="text-slate-500">Rate:</span> 
                   <span>{currentState.repetitionRate.value} {currentState.repetitionRate.unit}</span>
                 </div>
@@ -108,24 +108,24 @@ export function ComparisonPanel({ currentResult, currentState }: ComparisonPanel
               </div>
             </div>
             
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
-              <h4 className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-4">Test Config (B)</h4>
+            <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-4">
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-orange-600 mb-4">Test Config (B)</h4>
               <div className="space-y-2">
-                <div className="flex">
-                   <input type="number" className="w-full bg-slate-900 border border-slate-700 border-r-0 rounded-l-lg px-2 py-1 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none" value={avgPowerB} onChange={e => setAvgPowerB(e.target.value)} />
-                   <select className="bg-slate-800 border border-slate-700 rounded-r-lg px-2 py-1 text-[10px] text-white focus:ring-1 focus:ring-cyan-500 outline-none" value={powerUnitB} onChange={e => setPowerUnitB(e.target.value)}>
+                <div className="flex shadow-sm rounded-lg">
+                   <input type="number" className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-2 py-1 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none" value={avgPowerB} onChange={e => setAvgPowerB(e.target.value)} />
+                   <select className="bg-slate-100 border border-slate-200 rounded-r-lg px-2 py-1 text-[10px] text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none" value={powerUnitB} onChange={e => setPowerUnitB(e.target.value)}>
                      {POWER_UNITS.map(u => <option key={u.label} value={u.label}>{u.label}</option>)}
                    </select>
                 </div>
-                <div className="flex">
-                   <input type="number" className="w-full bg-slate-900 border border-slate-700 border-r-0 rounded-l-lg px-2 py-1 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none" value={repRateB} onChange={e => setRepRateB(e.target.value)} />
-                   <select className="bg-slate-800 border border-slate-700 rounded-r-lg px-2 py-1 text-[10px] text-white focus:ring-1 focus:ring-cyan-500 outline-none" value={repUnitB} onChange={e => setRepUnitB(e.target.value)}>
+                <div className="flex shadow-sm rounded-lg">
+                   <input type="number" className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-2 py-1 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none" value={repRateB} onChange={e => setRepRateB(e.target.value)} />
+                   <select className="bg-slate-100 border border-slate-200 rounded-r-lg px-2 py-1 text-[10px] text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none" value={repUnitB} onChange={e => setRepUnitB(e.target.value)}>
                      {FREQUENCY_UNITS.map(u => <option key={u.label} value={u.label}>{u.label}</option>)}
                    </select>
                 </div>
-                <div className="flex">
-                   <input type="number" className="w-full bg-slate-900 border border-slate-700 border-r-0 rounded-l-lg px-2 py-1 text-xs text-white focus:ring-1 focus:ring-cyan-500 outline-none" value={durationB} onChange={e => setDurationB(e.target.value)} />
-                   <select className="bg-slate-800 border border-slate-700 rounded-r-lg px-2 py-1 text-[10px] text-white focus:ring-1 focus:ring-cyan-500 outline-none" value={durUnitB} onChange={e => setDurUnitB(e.target.value)}>
+                <div className="flex shadow-sm rounded-lg">
+                   <input type="number" className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-2 py-1 text-xs text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none" value={durationB} onChange={e => setDurationB(e.target.value)} />
+                   <select className="bg-slate-100 border border-slate-200 rounded-r-lg px-2 py-1 text-[10px] text-slate-900 focus:ring-1 focus:ring-blue-500 outline-none" value={durUnitB} onChange={e => setDurUnitB(e.target.value)}>
                      {TIME_UNITS.map(u => <option key={u.label} value={u.label}>{u.label}</option>)}
                    </select>
                 </div>
@@ -133,11 +133,11 @@ export function ComparisonPanel({ currentResult, currentState }: ComparisonPanel
             </div>
           </div>
 
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
-            <div className="flex justify-between items-center mb-2 pb-2 border-b border-slate-800">
+          <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-4">
+            <div className="flex justify-between items-center mb-2 pb-2 border-b border-slate-200">
               <div className="w-1/3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Metric</div>
-              <div className="w-1/4 text-[10px] font-bold text-cyan-500 uppercase tracking-widest">Config A</div>
-              <div className="w-1/4 text-[10px] font-bold text-amber-500 uppercase tracking-widest">Config B</div>
+              <div className="w-1/4 text-[10px] font-bold text-blue-600 uppercase tracking-widest">Config A</div>
+              <div className="w-1/4 text-[10px] font-bold text-orange-600 uppercase tracking-widest">Config B</div>
               <div className="w-1/4 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-right">Difference</div>
             </div>
             
@@ -146,21 +146,21 @@ export function ComparisonPanel({ currentResult, currentState }: ComparisonPanel
                 {renderComparisonRow('Pulse Energy', currentResult.pulseEnergy, resultB.pulseEnergy, ENERGY_UNITS)}
                 {renderComparisonRow('Peak Power', currentResult.peakPower, resultB.peakPower, PEAK_POWER_UNITS)}
                 
-                <div className="flex justify-between items-center py-2 border-b border-slate-800 last:border-0">
-                  <div className="w-1/3 text-xs font-medium text-slate-400">Duty Cycle</div>
-                  <div className="w-1/4 text-xs text-white font-mono">
-                    {(currentResult.dutyCycle * 100).toExponential(2)}<span className="text-[10px] text-slate-500">%</span>
+                <div className="flex justify-between items-center py-2 border-b border-slate-100 last:border-0">
+                  <div className="w-1/3 text-xs font-medium text-slate-500">Duty Cycle</div>
+                  <div className="w-1/4 text-xs text-slate-900 font-mono">
+                    {(currentResult.dutyCycle * 100).toExponential(2)}<span className="text-[10px] text-slate-400">%</span>
                   </div>
-                  <div className="w-1/4 text-xs text-white font-mono">
-                    {(resultB.dutyCycle * 100).toExponential(2)}<span className="text-[10px] text-slate-500">%</span>
+                  <div className="w-1/4 text-xs text-slate-900 font-mono">
+                    {(resultB.dutyCycle * 100).toExponential(2)}<span className="text-[10px] text-slate-400">%</span>
                   </div>
-                  <div className="w-1/4 text-xs text-right text-cyan-400 font-medium">
+                  <div className="w-1/4 text-xs text-right text-blue-600 font-medium">
                     {currentResult.dutyCycle === resultB.dutyCycle ? 'Equal' : (resultB.dutyCycle > currentResult.dutyCycle ? 'Increased' : 'Decreased')}
                   </div>
                 </div>
               </>
             ) : (
-              <div className="text-xs text-red-400 py-4 font-mono">{error}</div>
+              <div className="text-xs text-red-500 py-4 font-mono">{error}</div>
             )}
           </div>
         </div>

@@ -207,16 +207,16 @@ export default function App() {
   };
 
   return (
-    <div className="w-full h-screen bg-slate-950 text-slate-200 flex flex-col font-sans overflow-hidden selection:bg-cyan-500/30">
-      <header className="h-14 border-b border-slate-800 bg-slate-900/50 flex items-center justify-between px-6 flex-shrink-0">
+    <div className="w-full h-screen bg-slate-50 text-slate-700 flex flex-col font-sans overflow-hidden selection:bg-blue-500/30">
+      <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 flex-shrink-0 shadow-sm z-10">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-cyan-500 rounded flex items-center justify-center">
-            <svg className="w-5 h-5 text-slate-950" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center shadow-sm">
+            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
-          <h1 className="text-lg font-bold tracking-tight text-white">Ultrafast Pulse <span className="text-cyan-400">Calculator</span></h1>
+          <h1 className="text-lg font-bold tracking-tight text-slate-900">Ultrafast Pulse <span className="text-blue-600">Calculator</span></h1>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-xs text-slate-400 uppercase tracking-widest mr-2 hidden sm:inline-block">Presets:</span>
+          <span className="text-xs text-slate-500 uppercase tracking-widest mr-2 hidden sm:inline-block">Presets:</span>
           {[
             { id: 'yb-fiber', label: 'Yb:Fiber' },
             { id: 'ti-sapphire', label: 'Ti:Sapphire' },
@@ -225,7 +225,7 @@ export default function App() {
             <button
               key={p.id}
               onClick={() => loadPreset(p.id)}
-              className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded text-xs transition-colors text-slate-200"
+              className="px-3 py-1 bg-white border border-slate-200 hover:bg-slate-50 shadow-sm rounded text-xs transition-colors text-slate-700"
             >
               {p.label}
             </button>
@@ -235,7 +235,7 @@ export default function App() {
 
       <main className="flex-1 flex overflow-hidden">
         {/* Left Sidebar: Inputs */}
-        <aside className="w-80 border-r border-slate-800 p-6 space-y-6 flex-shrink-0 bg-slate-950 overflow-y-auto">
+        <aside className="w-80 border-r border-slate-200 p-6 space-y-6 flex-shrink-0 bg-white overflow-y-auto">
           <CalculatorForm 
             state={state} 
             setState={setState} 
@@ -250,14 +250,14 @@ export default function App() {
             onDeleteEntry={(id) => setHistory(prev => prev.filter(h => h.id !== id))}
           />
           
-          <div className="p-3 rounded bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-200 leading-relaxed mt-6">
-            <span className="font-bold block mb-1 text-amber-400">Important Disclaimer</span>
+          <div className="p-3 rounded-lg bg-orange-50 border border-orange-200 text-[11px] text-orange-800 leading-relaxed mt-6 shadow-sm">
+            <span className="font-bold block mb-1 text-orange-600">Important Disclaimer</span>
             This calculator provides theoretical estimates based on the entered values and selected pulse shape. Actual laser performance may differ because of pulse pedestals, imperfect compression, measurement uncertainty, spatial beam shape, optical losses, nonlinear effects, and temporal contrast.
           </div>
         </aside>
 
         {/* Center Panel: Results & Diagram */}
-        <div className="flex-1 p-6 flex flex-col space-y-6 overflow-y-auto bg-slate-900/20">
+        <div className="flex-1 p-6 flex flex-col space-y-6 overflow-y-auto bg-slate-50/50">
           <ResultCard result={result} calculatedFields={calculatedFields} />
           <PulseTrainDiagram result={result} />
           <IntensityCalculator result={result} />
@@ -266,17 +266,17 @@ export default function App() {
         </div>
 
         {/* Right Sidebar: Chatbot Assistant */}
-        <aside className="w-80 border-l border-slate-800 bg-slate-900/30 flex flex-col flex-shrink-0 hidden lg:flex">
+        <aside className="w-80 border-l border-slate-200 bg-white flex flex-col flex-shrink-0 hidden lg:flex shadow-[-1px_0_10px_rgba(0,0,0,0.02)]">
           <ChatbotPanel context={{ inputs: state, result }} />
         </aside>
       </main>
 
       {/* Global Footer */}
-      <footer className="h-10 bg-slate-950 border-t border-slate-800 px-6 flex items-center justify-between text-[10px] text-slate-500 flex-shrink-0 hidden sm:flex">
+      <footer className="h-10 bg-white border-t border-slate-200 px-6 flex items-center justify-between text-[10px] text-slate-500 flex-shrink-0 hidden sm:flex">
         <div className="flex space-x-4 uppercase tracking-widest">
-          <span className="hover:text-slate-300 cursor-pointer">History</span>
-          <span className="hover:text-slate-300 cursor-pointer">Formulas</span>
-          <span className="hover:text-slate-300 cursor-pointer text-amber-500">Safety Disclaimer</span>
+          <span className="hover:text-slate-800 cursor-pointer">History</span>
+          <span className="hover:text-slate-800 cursor-pointer">Formulas</span>
+          <span className="hover:text-slate-800 cursor-pointer text-orange-600">Safety Disclaimer</span>
         </div>
         <div>© {new Date().getFullYear()} OptiPulse Scientific • V2.4.1</div>
       </footer>
